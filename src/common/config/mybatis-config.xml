@@ -18,8 +18,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		
 		<typeAlias type="channel.domain.StatVO" alias="Stat"/>
 		<typeAlias type="main.domain.subscribeVO" alias="subscribe"/>
-		<typeAlias type="trailer_view.domain.Trailer_view" alias="Trailer"></typeAlias>
-		<typeAlias type="trailer_view.domain2.Trailer_view2" alias="Trailer2"></typeAlias>
+		<typeAlias type="trailer_view.domain.Trailer_view" alias="Trailer_ds"></typeAlias>
+		<typeAlias type="trailer_view.domain2.Trailer_view2" alias="Trailer_ds2"></typeAlias>
 	</typeAliases>
 
 	<environments default="development">

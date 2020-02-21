@@ -6,29 +6,29 @@
    namespace="trailer_view.persistence.Trailer_view_Mapper">
 	
 	
-	<select id = "test" resultType="Trailer">
+	<select id = "test" resultType="Trailer_ds">
 		select * from TRAILER_VIEW where idx='DA002'
 		
 		 
 	</select> 
 
   
-<select id = "randomList" resultType="Trailer" parameterType="map">
+<select id = "randomList" resultType="Trailer_ds" parameterType="map">
 
 	select * from  ( select * from TRAILER_VIEW where idx != #{not} and idx like #{end}
 	 	 order by dbms_random.value) where rownum  <![CDATA[ <= 5 ]]>
      
 </select>
- <select id ="selectMv" resultType="Trailer" parameterType="string">
+ <select id ="selectMv" resultType="Trailer_ds" parameterType="string">
   	select * from TRAILER_VIEW where idx=#{value}
 </select> 
 
-<select id="selerandom" resultType="Trailer">
+<select id="selerandom" resultType="Trailer_ds">
 	select * from  (select * from TRAILER_VIEW order by dbms_random.value) where rownum <![CDATA[<= 1	]]>
 </select>
 
 
-<select id ="selectAllDb" resultType="Trailer2">
+<select id ="selectAllDb" resultType="Trailer_ds2">
 		select idx, title from TRAILER_VIEW
 </select>
 <update id = "updateDB_api" parameterType="map">

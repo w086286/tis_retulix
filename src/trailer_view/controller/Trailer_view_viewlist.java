@@ -20,7 +20,7 @@ public class Trailer_view_viewlist extends AbstractAction {
 		req.setAttribute("mvo", mvo);
 		
 		
-		this.setViewPage("new.jsp");
+		this.setViewPage("mList/new.jsp");
 		this.setRedirect(false); 
 	}
 }
