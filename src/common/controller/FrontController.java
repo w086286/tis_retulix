@@ -20,8 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(
 		urlPatterns= {"*.do"},
 		initParams= {
-				@WebInitParam(name="config", value="C:\\Users\\2class-004\\git\\tis_retulix\\WebContent\\WEB-INF\\command.properties")
-		})
+				@WebInitParam(name="config", value="D:\\Develop_Saves\\Eclipse_Git\\tis_retulix\\WebContent\\WEB-INF\\command.properties")
+		})		//"D:\Develop_Saves\Eclipse_Git\tis_retulix\WebContent\WEB-INF\\command.properties"
+				//"C:\\Users\\2class-004\\git\\tis_retulix\\WebContent\\WEB-INF\\command.properties"
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -125,6 +126,7 @@ public class FrontController extends HttpServlet {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("마지믹");
 			throw new ServletException(e);			//에러를 화면에 띄워주세요
 		}
 	}

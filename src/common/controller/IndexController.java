@@ -13,5 +13,9 @@ public class IndexController extends AbstractAction {
 		this.setViewPage("/index.jsp");
 		this.setRedirect(false);
 	}
+	
+	public void login() {
+		System.out.println("login");
+	}
 
 }

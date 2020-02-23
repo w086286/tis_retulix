@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="./css/whole.css" /> <!-- 전체 기본 스타일 -->
+  <link rel="stylesheet" href="./css/login.css" /> <!-- 로그인 스타일 -->
+  <script src="/js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+<form action="/Project2Middle/login/" method="post">
+  <div class="wrap">
+    <div>
+      <img src="images/retulix_logo_.png" id="mainImg">
+    </div>
+    <div>
+      <input class="input" name="userid" type="text" placeholder="아이디를 입력하세요.">
+    </div>
+    <div>
+      <input class="input" type="text" placeholder="비밀번호를 입력하세요.">
+    </div>
+    <div id="checkbox" class="checkbox">
+      <label><input type="checkbox">아이디 기억하기</label>
+    </div>
+    <div>
+      <a href="/main01.html"><button type="submit">로그인</button></a>
+      <a href="signUp01.html"><button type="button">회원가입</button></a>
+    </div>
+    <div>
+      <!-- <label><a href="findId01.html">아이디 / 비밀번호를 분실하셨습니까?</a></label> -->
+      <p><a href="findId.html"><text>아이디 / 비밀번호를 분실하셨습니까?</text></a></p>
+    </div>
+  </div>
+ </form> 
+</body>
+</html>
