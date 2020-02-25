@@ -14,7 +14,7 @@ public class mainController extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
+		System.out.println("mainController");
 		mainDAOMyBatis dao=new mainDAOMyBatis();
 		String email_subs="";
 		List<subscribeVO> arr=dao.listMain(email_subs);
