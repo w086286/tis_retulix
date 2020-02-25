@@ -12,23 +12,24 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.google.gson.Gson;
 
+import common.domain.ReviewVO;
 import trailer_view.domain.Trailer_view;
 import trailer_view.domain2.Trailer_view2;
 
 public class Trailer_view_DAOMyBatis {
-	// namespace���� ���� ���. BoardMapper.xml�� ����Ǿ��ִ� namespace�� ����Ӽ����� ���ƾ���
+	
 	private final String NS = "trailer_view.persistence.Trailer_view_Mapper";
 
-	private SqlSession ses;// �ſ��߿�
+	private SqlSession ses;
 
 	public SqlSessionFactory getSessionFactory() {
 		SqlSessionFactoryBuilder builder = null;
-		String resource = "common/config/mybatis-config.xml";// ���赵 ����
+		String resource = "common/config/mybatis-config.xml";
 
 		try {
 			InputStream is = Resources.getResourceAsStream(resource);
-			builder = new SqlSessionFactoryBuilder();//���డ
-			SqlSessionFactory factory =builder.build(is);//���� ����
+			builder = new SqlSessionFactoryBuilder();
+			SqlSessionFactory factory =builder.build(is);
 			is.close();
 			return factory;
 		} catch (Exception e) {
@@ -70,7 +71,7 @@ public class Trailer_view_DAOMyBatis {
 			Map<String,String> map = new HashMap<>();
 			map.put("not", idx);
 			map.put("end","%"+checking_range+"%");
-		System.out.println("���꽺Ʈ�� �׽�Ʈ : "+checking_range);
+		System.out.println("asdasd : "+checking_range);
 			List<Trailer_view> arr=ses.selectList(NS+".randomList",map);
 			
 			return arr;
@@ -140,6 +141,17 @@ public class Trailer_view_DAOMyBatis {
 		} finally {
 			close();
 		}
+	}
+
+	public List<ReviewVO> selectReview(String idx) {
+		try {
+			ses=getSessionFactory().openSession(true);
+			List<ReviewVO>arr = ses.selectList(NS+".selectReview",idx);
+			return arr;
+		} finally {
+			close();
+		}
+	
 	}
 
 	

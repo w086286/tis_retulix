@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="main.domain.subscribeVO" alias="subscribe"/>
 		<typeAlias type="trailer_view.domain.Trailer_view" alias="Trailer_ds"></typeAlias>
 		<typeAlias type="trailer_view.domain2.Trailer_view2" alias="Trailer_ds2"></typeAlias>
+
 	</typeAliases>
 
 	<environments default="development">
@@ -36,6 +37,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="channel/persistence/ChannelMapper.xml"/>
 		<mapper resource="main/persistence/mainMapper.xml"/>
 		<mapper resource="admin/persistence/adminMapper.xml"/>
+		<mapper resource = "trailer_view/persistence/Trailer_view_Mapper.xml"/>
 	</mappers>
 	
 </configuration>

@@ -65,7 +65,7 @@ public class ReviewVO implements Serializable{
 	}
 
 	public String getIdx() {
-		return idx;
+		return this.idx = div+genre+num;
 	}
 
 	public void setIdx(String idx) {

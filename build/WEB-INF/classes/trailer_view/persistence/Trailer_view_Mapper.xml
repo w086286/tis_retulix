@@ -11,7 +11,10 @@
 		
 		 
 	</select> 
-
+<select id="selectReview" resultType="Review" parameterType="string">
+	select div,genre,num,t_idx, substr(url,(instr(url,'/',4,4))+1) as url from review where t_idx =#{value}
+ 
+</select>
   
 <select id = "randomList" resultType="Trailer_ds" parameterType="map">
 
