@@ -26,46 +26,30 @@ public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private Map<String, Object> cmdMap= new HashMap<>();
-	//command.properties파일의 key와 value값을 가져와서 저장해줄 map객체
        
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		
-		/* @WebInitParam에 있는 init-param config값을 읽어온다 */
 		String props= config.getInitParameter("config");
-		//@WebInitParam의 키값 config의 밸류값을 props에 저장함
-		System.out.println("경로props:"+props);
 		
-		
-		/* Properties객체 생성 */
 		Properties pr= new Properties();
-		/*
-		command.properties 파일의 경로를 Properties 객체에 저장한다 
-		저장하려면 input stream이 필요한가봄
-		*/
 		try {
 			FileInputStream fis= new FileInputStream(props);
 			pr.load(fis);
 			
 			fis.close();
-			System.out.println(pr.getProperty("/index.do"));
 			
-			//pr의 키값들만 추출해보기
 			Enumeration<Object> en= pr.keys();
 			while(en.hasMoreElements()) {
 				Object key= en.nextElement();
 				String cmd= key.toString();				//index.do가 들어옴
 				String className=pr.getProperty(cmd);	//xxxIndexAction
 				
-				System.out.println("[FrontController] cmd: "+cmd);
-				System.out.println("[FrontController] className: "+className);
-				
 				if(className != null) {
 					className=className.trim();
 				}
 				
-				/*해당 클래스를 객체화하여 메모리에 올린다*/
 				Class cls= Class.forName(className);
 				Object cmdObj= cls.newInstance();		//객체를 메모리에 올려줌
 				
@@ -89,13 +73,10 @@ public class FrontController extends HttpServlet {
 	
 	private void process(HttpServletRequest req, HttpServletResponse res) throws ServletException {
 		String path= req.getServletPath();
-		System.out.println("[FrontController] path: "+path);
 		
 		Object obj=cmdMap.get(path);
-		System.out.println("[FrontController] obj: "+obj);
 		
 		if(obj==null) {
-			System.out.println("[FrontController] 액션이 null");
 			return;
 		}
 		
@@ -109,7 +90,6 @@ public class FrontController extends HttpServlet {
 			//이동할 뷰페이지 지정
 			String viewPage= action.getViewPage();
 			if(viewPage==null) {
-				System.out.println("[FrontController] 뷰페이지가 null");
 				viewPage="index.jsp";
 			}
 			
