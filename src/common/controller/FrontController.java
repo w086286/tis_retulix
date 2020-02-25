@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(
 		urlPatterns= {"*.do"},
 		initParams= {
-				@WebInitParam(name="config", value="C:\\Users\\2class-004\\git\\tis_retulix\\WebContent\\WEB-INF\\command.properties")
+				@WebInitParam(name="config", value="C:\\Users\\2class-015\\git\\tis_retulix123\\WebContent\\WEB-INF\\command.properties")
 		})
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

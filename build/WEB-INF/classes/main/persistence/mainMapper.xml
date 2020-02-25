@@ -19,9 +19,28 @@
 	</select>
 	
 	<select id="SF_Movie" resultType="Trailer">
-		select title from trailer_view where idx like '%MS%'
+		select title from trailer_view where idx like '%MS%'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 where idx like '%MS%'
 	</select>
 
+	<select id="CO_Movie" resultType="Trailer">
+		select title from trailer_view where idx like '%MC%'
+	</select>
+	
+	<select id="AC_Movie" resultType="Trailer">
+		select title from trailer_view where idx like '%MA%'
+	</select>
+	
+	<select id="HO_Movie" resultType="Trailer">
+		select title from trailer_view where idx like '%MH%'
+	</select>
+	
+	<select id="RO_Movie" resultType="Trailer">
+		select title from trailer_view where idx like '%MR%'
+	</select>
+	
+	<select id="Drama" resultType="Trailer">
+		select title from trailer_view where idx like '%D%'
+	</select>
 
 
 
