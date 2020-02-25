@@ -3,6 +3,7 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--구독 리스트 boardList.jsp참고할것  -->
 <% String ctx=request.getContextPath(); %>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -43,6 +44,18 @@
 
 
 <body>
+	<!-- 세션에 저장된 loginUser 추출================================================= -->
+	<form id="user" name="user">
+		<input type="text" id="email" name="email">
+	</form>
+	<c:if test="${loginUser ne null }">
+		<script>
+			sessionStorage.setItem('user_email', '${loginUser.email}')
+			var email=sessionStorage.getItem('user_email', '${loginUser.email}')
+			$("#email").val(email);
+		</script>
+	</c:if>
+	
 	<!-- 상단바====================================================================== -->
 	<div id="wrap">
 		<ul class="topNav">
@@ -59,7 +72,7 @@
 			</li>
 
 			<li class="topNavRight"><a href="#">로그아웃</a></li>
-			<li class="topNavRight"><a href="<%=ctx%>/chDoor.do"><i class="fa fa-cog"></i></a></li>
+			<li class="topNavRight"><a href="<%=ctx%>/chDoor.do?email=${email}"><i class="fa fa-cog"></i></a></li>
 			<li class="topNavRight"><a href="<%=ctx%>/admin.do"><i class="fa fa-star"></i></a></li>
 		</ul>
 	</div>
@@ -75,7 +88,7 @@
 			<div class="sideNavInfo">
 				<span> <img src="./images/subscribe.png" alt="회원 이미지" />
 				</span>
-				<h1>회원 이름AAAAAAAAAAAAAAAV</h1>
+				<h1></h1>
 				<p>일반회원</p>
 			</div>
 

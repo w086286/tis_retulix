@@ -2,6 +2,7 @@ package channel.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import common.controller.AbstractAction;
 
 import common.domain.MemberVO;
@@ -11,7 +12,6 @@ public class ChannelInfoController extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
 		String email=req.getParameter("email");
 		String pwd=req.getParameter("pwd");
 		//System.out.println(email+"/"+pwd);

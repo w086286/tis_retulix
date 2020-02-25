@@ -8,7 +8,11 @@ import common.controller.AbstractAction;
 public class ChannelDoorController extends AbstractAction {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse res) throws Exception {
+	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		String email=req.getParameter("email");
+		
+		req.setAttribute("email", email);
+		
 		this.setViewPage("/channel/chDoor.jsp");	//jsp파일은 실제 디렉토리 경로로 작성
 		this.setRedirect(false);
 	}

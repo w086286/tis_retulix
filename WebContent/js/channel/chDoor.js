@@ -1,6 +1,7 @@
 //내 채널 페이지 진입시 chHome() 우선호출===========
 $(function(){
 	chHome();
+	console.log(email);
 })
 
 //메뉴 버튼 처리===================================
@@ -20,7 +21,10 @@ var init=function(){
 }
 
 //홈
-function chHome(){
+function chHome(email){
+	
+	
+	
 	$.ajax({
 		type:"post",
 		url:"chHome.do",	//do로 보내면 properties에서 받아 controller에서 처리
@@ -28,6 +32,7 @@ function chHome(){
 		cache:false,
 		data:$("#email").serialize()+"&"+$("#pwd").serialize(),
 		success: function(res){
+			
 			$("#chArticle").html(res);
 		},
 		error:function(err){

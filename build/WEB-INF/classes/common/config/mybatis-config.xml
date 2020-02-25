@@ -36,6 +36,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="channel/persistence/ChannelMapper.xml"/>
 		<mapper resource="main/persistence/mainMapper.xml"/>
 		<mapper resource="admin/persistence/adminMapper.xml"/>
+		<mapper resource="common/persistence/LoginMapper.xml"/>
 	</mappers>
 	
 </configuration>

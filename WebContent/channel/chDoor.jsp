@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <% String ctx=request.getContextPath(); %>
 
 <jsp:include page="/top.jsp" />
@@ -7,20 +8,13 @@
 <script type="text/javascript" src="./js/channel/chDoor.js"></script>
 <link rel="stylesheet" href="./css/channel.css" />
 
-<!-- 진입 테스트 회원 정보:::::::::::나중에 삭제 -->
-<div style="display:none">
-<input id="email" name="email" value="nofootbird@gmail.com">
-<input id="pwd" name="pwd" value="123">
-</div>
-<!-- :::::::::::::::::::::::::::::::::::::::: -->
-
 <div class="channelImage">
 	<img src="<%=ctx%>/images/channel/channel_image.png" alt="channelImage">
 	<button class="button-active" id="changeChImg">이미지 변경</button>
 </div>
 
 <div class="channelMenu">
-	<button class="button-active" onclick="chHome()" id="btChHome">홈</button>
+	<button class="button-active" onclick="chHome('${email}')" id="btChHome">홈</button>
 	<button onclick="chStat()" id="btChStat">내 채널 및 영상</button>
 	<button onclick="chInfo()" id="btChInfo">내 정보 및 포인트</button>
 	<button class="button-active" onclick="chUpload()"  id="btChUpload">영상 업로드</button>
