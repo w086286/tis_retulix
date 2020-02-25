@@ -28,7 +28,7 @@ public class ReviewVO implements Serializable{
 		this.div = div;
 		this.genre = genre;
 		this.num = num;
-		this.idx = idx;
+		this.idx = this.div+this.genre+this.num;
 		this.title = title;
 		this.url = url;
 		this.info = info;
@@ -65,11 +65,11 @@ public class ReviewVO implements Serializable{
 	}
 
 	public String getIdx() {
-		return this.idx = div+genre+num;
+		return idx;
 	}
 
 	public void setIdx(String idx) {
-		this.idx = div+genre+num;
+		this.idx = idx;
 	}
 
 	public String getTitle() {

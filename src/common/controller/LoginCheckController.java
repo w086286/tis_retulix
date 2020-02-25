@@ -1,11 +1,15 @@
 package common.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import common.domain.MemberVO;
 import common.persistence.LoginDAOMyBatis;
+import main.domain.subscribeVO;
+import main.persistence.mainDAOMyBatis;
 
 public class LoginCheckController extends AbstractAction {
 
@@ -35,8 +39,12 @@ public class LoginCheckController extends AbstractAction {
 			return;
 		}
 		
+		mainDAOMyBatis mainDao=new mainDAOMyBatis();
+		List<subscribeVO> arr=mainDao.listMain(email);
+		
 		HttpSession session=req.getSession();
 		session.setAttribute("loginUser", user);
+		session.setAttribute("email_subs", arr);
 		this.setViewPage("index.do");
 		this.setRedirect(true);
 	}

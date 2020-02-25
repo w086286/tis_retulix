@@ -7,7 +7,7 @@
 
 	<select id="testsubMapper" resultType="subscribe">
 	
-	select email_subs from subs where email='eyesonme@naver.com'
+	select email_subs from subs where email=#{value}
 		
 	</select> 
 	
@@ -15,32 +15,31 @@
 	select * from(
 	select url from trailer_view where good is not null order by good desc
 	)where rownum<![CDATA[ <= ]]> 3
- 
 	</select>
 	
 	<select id="SF_Movie" resultType="Trailer">
 		select title from trailer_view where idx like '%MS%'
 	</select>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<select id="CO_Movie" resultType="Trailer">
+		select title from trailer_view where idx like '%MC%'
+	</select>
+	
+	<select id="AC_Movie" resultType="Trailer">
+		select title from trailer_view where idx like '%MA%'
+	</select>
+	
+	<select id="HO_Movie" resultType="Trailer">
+		select title from trailer_view where idx like '%MH%'
+	</select>
+	
+	<select id="RO_Movie" resultType="Trailer">
+		select title from trailer_view where idx like '%MR%'
+	</select>
+	
+	<select id="Drama" resultType="Trailer">
+		select title from trailer_view where idx like '%D%'
+	</select>
 
 
 

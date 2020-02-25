@@ -43,7 +43,7 @@
 					<tr>
 						<td><a href='trailerEdit.do?idx=${list.idx}'><i class="fa fa-edit"></i></a></td>
 						<!-- 컨텐츠 세부내용 보기는 저쪽으로 링크 이어줄거 -->
-						<td><a href='trailerView.do?idx=${list.idx}'>${list.idx}</a></td>
+						<td><a href='movieView.do?idx=${list.idx}'>${list.idx}</a></td>
 						<td>${list.title}</td>
 						<td></td>
 						<td>개봉일</td>
