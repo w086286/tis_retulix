@@ -15,7 +15,7 @@
 		<select class='' name="selectBox">
 			<option value='email'>이메일</option>
 			<option value='name'>이름</option>
-			<option value='state'>회원상태</option>
+			<option value='stateStr'>회원상태</option>
 		</select>
 		<input type='text' name="searchInput" class=''>
 		<button type='button' onclick='goSearch()'>검색</button>
@@ -46,7 +46,7 @@
 					<td>${search.pwd}</td>
 					<td>${search.age}</td>
 					<td>${search.point}</td>
-					<td>${search.state}</td>
+					<td>${search.stateStr}</td>
 					<td><a href='memberContent.do?email=${list.email}'><i class="fa fa-eye"></i></a></td>
 				</tr>
 			</core:forEach>

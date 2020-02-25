@@ -45,7 +45,8 @@
 					<td>${list.pwd}</td>
 					<td>${list.age}</td>
 					<td>${list.point}</td>
-					<td>${list.state}</td>
+					<!-- 회원상태 문자로 출력 -->
+					<td>${list.stateStr}</td>
 					<td><a href='memberContent.do?email=${list.email}'><i class="fa fa-eye"></i></a></td>
 				</tr>
 			</core:forEach>
@@ -61,6 +62,7 @@
 function goSearch() {
 	searchForm.submit();
 }
+
 </script>
 
 <jsp:include page="/foot.jsp" />

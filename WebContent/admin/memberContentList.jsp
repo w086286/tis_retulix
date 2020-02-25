@@ -33,7 +33,7 @@
 				<th>영화명</th>
 				<th>리뷰제목</th>
 				<th>소개</th>
-				<th>URL</th>
+				<th>수정</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -42,7 +42,7 @@
 					<td>${member.idx}</td>
 					<td>${member.email}</td>
 					<td>${member.name}</td>
-					<td>${member.title}</td>
+					<td>${member.trailerTitle}</td>
 					<td>${member.reviewTitle}</td>
 			<core:if test='${function:length(member.info)<=40}'>	<!-- 너무길면 줄이기 -->
 					<td title='${member.info}'>${member.info}</td>

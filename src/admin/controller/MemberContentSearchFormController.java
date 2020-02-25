@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.domain.MemberContentVO;
-import admin.domain.PagingVO;
-import admin.persistence.ContentDAO;
+import admin.persistence.TrailerDAO;
 import common.controller.AbstractAction;
+import common.domain.PagingVO;
 
 public class MemberContentSearchFormController extends AbstractAction {
 
@@ -22,7 +22,7 @@ public class MemberContentSearchFormController extends AbstractAction {
 		}
 		int cpage= Integer.parseInt(cpageStr);
 
-		ContentDAO dao= new ContentDAO();
+		TrailerDAO dao= new TrailerDAO();
 		PagingVO paging= new PagingVO(cpage,10,5);
 		paging.setSelectBox(req.getParameter("selectBox"));
 		paging.setSearchInput(req.getParameter("searchInput"));

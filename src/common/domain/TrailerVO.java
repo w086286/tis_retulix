@@ -1,7 +1,6 @@
 package common.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class TrailerVO implements Serializable{
 	
@@ -26,7 +25,7 @@ public class TrailerVO implements Serializable{
 		this.div = div;
 		this.genre = genre;
 		this.num = num;
-		this.idx = idx;
+		this.idx = this.div+this.genre+this.num;
 		this.api_idx = api_idx;
 		this.url = url;
 		this.title = title;
@@ -65,7 +64,7 @@ public class TrailerVO implements Serializable{
 	}
 
 	public void setIdx(String idx) {
-		this.idx = div+genre+num;
+		this.idx = idx;
 	}
 
 	public String getApi_idx() {
@@ -124,6 +123,4 @@ public class TrailerVO implements Serializable{
 		this.email = email;
 	}  
 	
-	
-
 }

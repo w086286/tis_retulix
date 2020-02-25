@@ -3,9 +3,9 @@ package admin.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.NoticeVO;
 import admin.persistence.NoticeDAO;
 import common.controller.AbstractAction;
+import common.domain.NoticeVO;
 
 public class NoticeEditEndController extends AbstractAction {
 
@@ -31,11 +31,11 @@ public class NoticeEditEndController extends AbstractAction {
 			return;
 		}
 
-		NoticeVO notice= new NoticeVO(idx,title,info,null,Integer.parseInt(click),name);
+		NoticeVO notice= new NoticeVO(Integer.parseInt(idx),title,info,null,Integer.parseInt(click),name);
 		
 		int n= dao.updateNotice(notice);
 
-		String msg= (n>0)?"수정 성공":"수정 실패";
+		String msg= (n>0)?"게시글이 수정되었습니다":"수정에 실패하였습니다";
 		String loc= (n>0)?"noticeMain.do":"javascript:history.back()";
 		
 		req.setAttribute("msg", msg);

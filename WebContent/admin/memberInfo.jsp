@@ -25,19 +25,19 @@
 				<td>이름</td>
 				<td>${oldMember.name }</td>
 				<td><b> → </b></td>
-				<td>${member.name }</td>
+				<td>${newMember.name }</td>
 			</tr>
 			<tr>
 				<td>포인트</td>
 				<td>${oldMember.point }</td>
 				<td><b> → </b></td>
-				<td>${member.point }</td>
+				<td>${newMember.point }</td>
 			</tr>
 			<tr>
 				<td>상태</td>
-				<td>${oldMember.state }</td>
+				<td>${oldMember.stateStr }</td>
 				<td><b> → </b></td>
-				<td>${newState}</td>
+				<td>${newMember.stateStr}</td>
 			</tr>
 		</table>		
 	</div>
