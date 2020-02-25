@@ -22,7 +22,7 @@ public class Trailer_view_rdlist extends AbstractAction {
 		req.setAttribute("mvo", big);
 		req.setAttribute("arr", arr);
 		req.setAttribute("reviews", arr2);
-		System.out.println("idx뭐냐"+arr2.get(0).getIdx());
+		
 		this.setViewPage("mList/new.jsp");
 		this.setRedirect(false); 
 
