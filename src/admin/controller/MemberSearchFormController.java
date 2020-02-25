@@ -5,10 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.MemberVO;
-import admin.domain.PagingVO;
 import admin.persistence.MemberDAO;
 import common.controller.AbstractAction;
+import common.domain.MemberVO;
+import common.domain.PagingVO;
 
 public class MemberSearchFormController extends AbstractAction {
 

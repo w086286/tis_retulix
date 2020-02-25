@@ -3,6 +3,7 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--구독 리스트 boardList.jsp참고할것  -->
 <% String ctx=request.getContextPath(); %>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,37 +13,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<link rel="stylesheet" href="./css/whole.css" />
 <!-- 전체 기본 스타일 -->
-<link rel="stylesheet" href="./css/topNav.css" />
+<link rel="stylesheet" href="./css/whole.css" />
 <!-- 상단 내비게이션 바 스타일 -->
-<link rel="stylesheet" href="./css/sideNav.css" />
+<link rel="stylesheet" href="./css/topNav.css" />
 <!-- 좌측 내비게이션 바 스타일 -->
+<link rel="stylesheet" href="./css/sideNav.css" />
 
 <!-- 각 담당 파트별 별도 css 지정 스타일 -->
 <link rel="stylesheet" href="./css/main.css" />
+<link rel="stylesheet" href="./css/admin.css" />
 
-<!--jQuery Google CDN-------------------------->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--jQuery Google CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <!-- 아이콘 라이브러리 -->
-<script src="https://kit.fontawesome.com/d9fe37202c.js"
-	crossorigin="anonymous"></script>
-<!-----------------------------lightslider---------------->
+<script src="https://kit.fontawesome.com/d9fe37202c.js" crossorigin="anonymous"></script>
+
+<!-- lightslider -->
 <link rel="stylesheet" href="css/lightslider.css" />
-<!--lightslider------------------------------------------->
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<!-------------------------------------------------------->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 
 <title>reTuLix</title>
 </head>
-<!-- EO-head--------------------------------------------------- -->
-
 
 <body>
+	<!-- 세션에 저장된 loginUser 추출================================================= -->
+	<form id="user" name="user">
+		<input type="hidden" id="email" name="email">
+	</form>
+	<c:if test="${loginUser ne null}">
+		<script>
+			sessionStorage.setItem('user_email', '${loginUser.email}')
+			var email=sessionStorage.getItem('user_email', '${loginUser.email}')
+			$("#email").val(email);
+		</script>
+	</c:if>
+	
 	<!-- 상단바====================================================================== -->
 	<div id="wrap">
 		<ul class="topNav">
@@ -75,7 +83,7 @@
 			<div class="sideNavInfo">
 				<span> <img src="./images/subscribe.png" alt="회원 이미지" />
 				</span>
-				<h1>회원 이름AAAAAAAAAAAAAAAV</h1>
+				<h1>${loginUser.name}</h1>
 				<p>일반회원</p>
 			</div>
 
@@ -119,18 +127,17 @@
 				<hr>
 				<div class="sideNavFoot">
 					<ul>
-						<li><a href="#">
+						<li><a href="<%=ctx%>/noticeMain.do">
 							<span class=""><i class="fa fa-exclamation-circle"></i>공지사항</span>
 						</a></li>
-						<li><a href="#">
+						<li><a href="<%=ctx%>/chDoor.do">
 							<span class=""><i class="fa fa-cog"></i>내 채널</span> 
 						</a></li>
-						<li><a href="#"> <span class=""><i
-									class="fa fa-times"></i>로그아웃</span>
+						<li><a href="#"> <span class=""><i class="fa fa-times"></i>로그아웃</span>
 						</a></li>
 						<hr>
 						<button type="button">
-							<i class="fa fa-product-hunt"></i> 포인트 충전하기
+							<i class="fab fa-product-hunt"></i> 포인트 충전하기
 						</button>
 					</ul>
 				</div>

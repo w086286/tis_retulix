@@ -34,6 +34,7 @@
 				<th>리뷰제목</th>
 				<th>소개</th>
 				<th>작성일</th>
+				<th>수정</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -42,7 +43,7 @@
 					<td>${all.idx}</td>
 					<td>${all.email}</td>
 					<td>${all.name}</td>
-					<td>${all.title}</td>
+					<td>${all.trailerTitle}</td>
 					<td>${all.reviewTitle}</td>
 			<core:if test='${function:length(all.info)<=40}'>	<!-- 너무길면 줄이기 -->
 					<td title='${all.info}'>${all.info}</td>
@@ -50,6 +51,7 @@
 			<core:if test='${function:length(all.info)>40}'>
 					<td title='${all.info}'>${function:substring(all.info,0,40)}...</td>
 			</core:if>
+					<td>${all.wdate}</td>
 					<td><i class="fa fa-edit"></i></td>
 				</tr>
 			</core:forEach>

@@ -88,5 +88,6 @@ input.label:not:hover, input.label:focus {
 	background-color:darkred;
 }
 .bg-list {
-	background-color:#009f00;
+	background-color:#008000;
+	opacity:0.5;
 }

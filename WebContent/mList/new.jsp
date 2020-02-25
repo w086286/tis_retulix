@@ -3,6 +3,6 @@
 
 <jsp:include page="/top.jsp" />
 
-<jsp:include page="/repage.jsp" />
+<jsp:include page="/mList/repage.jsp" />
 
 <jsp:include page="/foot.jsp" />

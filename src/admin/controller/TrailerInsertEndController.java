@@ -1,21 +1,15 @@
 package admin.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.TrailerVO;
-import admin.domain.PagingVO;
-import admin.persistence.ContentDAO;
 import common.controller.AbstractAction;
 
-public class ContentInsertEndController extends AbstractAction {
+public class TrailerInsertEndController extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		System.out.println("[ContentInsertEndController] ## FROM. contentInsertEnd.do");
-
+		System.out.println("[trailerInsertEndController] ## FROM. trailerInsertEnd.do");
 			
 		/* 여기에 인서트문 작성하고 setAttribute()한 후에 돌아간다 */
 		
@@ -26,7 +20,7 @@ public class ContentInsertEndController extends AbstractAction {
 //		req.setAttribute("listContent", arr);
 		//---------------------------------------------
 		
-		this.setViewPage("contentList.do");
+		this.setViewPage("trailerInsert.do");
 		this.setRedirect(false);
 		
 	}

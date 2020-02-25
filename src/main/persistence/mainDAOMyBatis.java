@@ -1,17 +1,19 @@
 package main.persistence;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import common.domain.TrailerVO;
+import main.domain.TrailerVO;
 import main.domain.subscribeVO;
 
 public class mainDAOMyBatis {
@@ -45,9 +47,9 @@ public class mainDAOMyBatis {
 		try {
 		ses=this.getSessionFactory().openSession(true);
 		
-		Map<String,String> map=new HashMap<>();
-		map.put("email_subs", email_subs);
-		List<subscribeVO> arr=ses.selectList(NS+".testsubMapper",map);
+		//Map<String,String> map=new HashMap<>();
+		//map.put("email_subs", email_subs);
+		List<subscribeVO> arr=ses.selectList(NS+".testsubMapper", email_subs);
 		return arr;
 	}finally {
 		close();

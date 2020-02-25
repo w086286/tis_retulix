@@ -10,12 +10,12 @@
 <div id="" class="box">
 	<div class="" style='display:inline-block; float:left'>
 		<a href="<%=myctx %>/memberList.do" class='button'>회원정보</a> 
-		<a href="<%=myctx %>/contentList.do" class='button'>컨텐츠목록</a> 
+		<a href="<%=myctx %>/trailerList.do" class='button'>컨텐츠목록</a> 
 		<a href="<%=myctx %>/memberAllContent.do" class="button">회원컨텐츠</a> 
 		<a type="button" class="">결제내역</a>
 	</div>
 	<div class='' style='display:inline-block; float:right;'>
-		<a href='contentInsert.do' class='button' style='margin-left:2em;'>등록</a>
+		<a href='trailerInsert.do' class='button' style='margin-left:2em;'>등록</a>
 	</div>
 </div>
 

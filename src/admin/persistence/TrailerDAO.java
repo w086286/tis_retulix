@@ -11,10 +11,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import admin.domain.TrailerVO;
 import admin.domain.MemberContentVO;
+import common.domain.TrailerVO;
 
-public class ContentDAO {
+public class TrailerDAO {
 	
 	private final String NS="admin.persistence.adminMapper";
 	/* NameSpace값을 가질 상수: contentMapper.xml의 <namespace>속성값과 같아야 한다 */
@@ -52,11 +52,11 @@ public class ContentDAO {
 	}
 	
 	/* 총 컨텐츠 수(페이징처리용) */
-	public int getTotalContent() {
+	public int getTotalTrailer() {
 		try {
 			sqlSession= this.getSessionFactory().openSession(true);
 			
-			int n= sqlSession.selectOne(NS+".totalContent");
+			int n= sqlSession.selectOne(NS+".totalTrailer");
 			
 			return n;
 		}
@@ -66,14 +66,14 @@ public class ContentDAO {
 	}
 
 	/* 검색한 컨텐츠 수(페이징) */
-	public int getTotalSearchContent(String selectBox, String searchInput) {
+	public int getTotalSearchTrailer(String selectBox, String searchInput) {
 		try {
 			sqlSession= this.getSessionFactory().openSession(true);
 			Map<String,String> map= new HashMap<>();
 			map.put("selectBox",selectBox);
 			map.put("searchInput", searchInput);
 			
-			int n= sqlSession.selectOne(NS+".totalSearchContent",map);
+			int n= sqlSession.selectOne(NS+".totalSearchTrailer",map);
 			
 			return n;
 		}
@@ -124,7 +124,7 @@ public class ContentDAO {
 	}
 	
 /* 모든 컨텐츠를 보여주는 메소드 */
-	public List<TrailerVO> listContent(int start, int end) {
+	public List<TrailerVO> listTrailer(int start, int end) {
 		try {
 			sqlSession= this.getSessionFactory().openSession(true);
 			
@@ -132,7 +132,7 @@ public class ContentDAO {
 			map.put("start", String.valueOf(start));
 			map.put("end", String.valueOf(end));
 			
-			List<TrailerVO> arr= sqlSession.selectList(NS+".listContent", map);
+			List<TrailerVO> arr= sqlSession.selectList(NS+".listTrailer", map);
 			
 			return arr;
 		}
@@ -142,13 +142,13 @@ public class ContentDAO {
 	}
 	
 	/* 특정 컨텐츠 내용을 가져오는 메소드 (수정할때) */
-	public TrailerVO selectOneContent(String idx) {
+	public TrailerVO selectOneTrailer(String idx) {
 		try {
 			sqlSession= this.getSessionFactory().openSession(true);
 			
-			TrailerVO content= sqlSession.selectOne(NS+".selectOneContent", idx);
+			TrailerVO trailer= sqlSession.selectOne(NS+".selectOneTrailer", idx);
 			
-			return content;
+			return trailer;
 		}
 		finally {
 			close();
@@ -156,7 +156,7 @@ public class ContentDAO {
 	}
 	
 	/* 검색한 컨텐츠 보여주는 메소드 */
-	public List<TrailerVO> searchContent(String selectBox,String searchInput,int start,int end) {
+	public List<TrailerVO> searchTrailer(String selectBox,String searchInput,int start,int end) {
 		
 		try {
 			sqlSession=this.getSessionFactory().openSession(true);
@@ -170,11 +170,11 @@ public class ContentDAO {
 			
 			//검색이 공란이면 전체리스트 반환
 			if(searchInput==null || searchInput.trim().isEmpty()) {
-				List<TrailerVO> arr= listContent(start, end);
+				List<TrailerVO> arr= listTrailer(start, end);
 				return arr;
 			}
 			
-			List<TrailerVO> arr= sqlSession.selectList(NS+".searchContent", map);
+			List<TrailerVO> arr= sqlSession.selectList(NS+".searchTrailer", map);
 			
 			return arr;
 		}
@@ -249,10 +249,10 @@ public class ContentDAO {
 	}
 	
 	/* 컨텐츠 수정(idx) */
-	public int updateContent(TrailerVO content) {
+	public int updateTrailer(TrailerVO trailer) {
 		try {
 			sqlSession= this.getSessionFactory().openSession(true);
-			int n= sqlSession.update(NS+".updateContent", content);
+			int n= sqlSession.update(NS+".updateTrailer", trailer);
 			return n;
 		}
 		finally {

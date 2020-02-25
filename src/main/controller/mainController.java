@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.controller.AbstractAction;
-import common.domain.TrailerVO;
+import main.domain.TrailerVO;
 import main.domain.subscribeVO;
 import main.persistence.mainDAOMyBatis;
 
@@ -47,7 +47,6 @@ public class mainController extends AbstractAction {
 		String D_title=""; //드라마
 		List<TrailerVO> Ddao=dao.Drama(D_title);
 		req.setAttribute("D_title", Ddao);
-		
 		
 		
 	}

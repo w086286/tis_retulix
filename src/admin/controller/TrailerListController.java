@@ -5,12 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.TrailerVO;
-import admin.domain.PagingVO;
-import admin.persistence.ContentDAO;
+import admin.persistence.TrailerDAO;
 import common.controller.AbstractAction;
+import common.domain.PagingVO;
+import common.domain.TrailerVO;
 
-public class ContentListController extends AbstractAction {
+public class TrailerListController extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -22,10 +22,10 @@ public class ContentListController extends AbstractAction {
 		}
 		int cpage= Integer.parseInt(cpageStr);
 		
-		ContentDAO dao= new ContentDAO();
-		PagingVO paging= new PagingVO(dao.getTotalContent(), cpage, 10, 10);
+		TrailerDAO dao= new TrailerDAO();
+		PagingVO paging= new PagingVO(dao.getTotalTrailer(), cpage, 10, 10);
 		
-		List<TrailerVO> arr= dao.listContent(paging.getStart(), paging.getEnd());
+		List<TrailerVO> arr= dao.listTrailer(paging.getStart(), paging.getEnd());
 		//유효성
 		if(arr.size()<=0) {
 			String msg="목록을 찾을 수 없습니다 [result:none]";
@@ -36,11 +36,11 @@ public class ContentListController extends AbstractAction {
 			return;
 		}
 		
-		req.setAttribute("listContent", arr);
+		req.setAttribute("listTrailer", arr);
 		req.setAttribute("paging", paging);
-		req.setAttribute("pageNavi", paging.getPageNavi(req.getContextPath(),"contentList.do",false));
+		req.setAttribute("pageNavi", paging.getPageNavi(req.getContextPath(),"trailerList.do",false));
 		
-		this.setViewPage("/admin/contentList.jsp");
+		this.setViewPage("/admin/trailerList.jsp");
 		this.setRedirect(false);
 
 	}

@@ -9,7 +9,7 @@
 <div class='box'>
 		<h2 class='head'>검색 결과 [검색어 : ${paging.searchInput }]</h2>
 </div>
-<form action="contentSearch.do" name="searchForm" method="POST">
+<form action="trailerSearch.do" name="searchForm" method="POST">
 	<div class='box'>
 		<select class='' name="selectBox">
 			<option value='idx'>번호</option>
@@ -31,22 +31,25 @@
 					<th>감독</th>
 					<th>개봉일</th>
 					<th>소개</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
-				<core:forEach var="search" items="${searchContent}">
+				<core:forEach var="search" items="${searchTrailer}">
 					<tr>
-						<td><a href='contentEdit.do?idx=${search.idx}'><i class="fa fa-edit"></i></a></td>
+						<td><a href='trailerEdit.do?idx=${search.idx}'><i class="fa fa-edit"></i></a></td>
 						<td>${search.idx}</td>
 						<td>${search.title}</td>
-						<td>${search.director}</td>
-						<td>${search.release}</td>
-				<core:if test='${function:length(search.info)<=40}'>	<!-- 너무길면 줄이기 -->
-						<td title='${search.info}'>${search.info}</td>
+						<td>감독</td>
+						<td>개봉일</td>
+						<!-- 컨텐츠 세부내용 보기는 저쪽으로 링크 이어줄거 -->
+				<core:if test='${function:length(search.title)<=40}'>	<!-- 너무길면 줄이기 -->
+						<td title='${search.title}'>영화소개</td>
 				</core:if>
-				<core:if test='${function:length(search.info)>40}'>
-						<td title='${search.info}'>${function:substring(search.info,0,40)}...</td>
+				<core:if test='${function:length(search.title)>40}'>
+						<td title='${search.title}'>${function:substring(search.title,0,40)}...</td>
 				</core:if>
+						<td><a href='javascript:goDel("${search.idx}")'><i class="fa fa-trash"></i></a></td>
 					</tr>
 				</core:forEach>
 			</tbody>
@@ -61,7 +64,16 @@
 function goSearch() {
 	searchForm.submit();
 }
-
+function goDel(idx){
+	var check= confirm("["+idx+"] 항목을 정말로 삭제하시겠습니까?");
+	if(check){
+		location.href="trailerDelete.do?idx="+idx;		
+	}
+	else {
+		alert("삭제가 취소되었습니다");
+		return;
+	}
+}
 </script>
 
 <jsp:include page="/foot.jsp"/>

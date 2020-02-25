@@ -3,11 +3,11 @@ package admin.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.TrailerVO;
-import admin.persistence.ContentDAO;
+import admin.persistence.TrailerDAO;
 import common.controller.AbstractAction;
+import common.domain.TrailerVO;
 
-public class ContentEditEndController extends AbstractAction {
+public class TrailerEditEndController extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -28,16 +28,16 @@ public class ContentEditEndController extends AbstractAction {
 		String info= req.getParameter("info");
 		String release= req.getParameter("release");
 		
-		ContentDAO dao= new ContentDAO();
+		TrailerDAO dao= new TrailerDAO();
 		
-		TrailerVO content= new TrailerVO(idx, title, director, release, info);
+		TrailerVO trailer= new TrailerVO(idx, title, director, release, info);
 		
-		int n= dao.updateContent(content);
+		int n= dao.updateTrailer(trailer);
 		
 		String msg= (n>0)?"수정 성공":"수정 실패";
 		String loc= (n>0)?"contentView.do?idx="+idx:"javascript:history.back()";
 		
-		req.setAttribute("content", content);
+		req.setAttribute("trailer", trailer);
 		req.setAttribute("msg", msg);
 		req.setAttribute("loc", loc);
 		

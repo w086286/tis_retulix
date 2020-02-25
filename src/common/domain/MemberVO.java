@@ -13,10 +13,12 @@ public class MemberVO implements Serializable{
 	private String icon; 
 	private String chimg; 
 	private int state;
+	private String stateStr;
+	
 	
 	public MemberVO() {
+		
 	}
-	
 	public MemberVO(String email, String pwd, String name, String age, int point, int subs, String icon, String chimg,
 			int state) {
 		super();
@@ -29,6 +31,20 @@ public class MemberVO implements Serializable{
 		this.icon = icon;
 		this.chimg = chimg;
 		this.state = state;
+	}
+	public MemberVO(String email, String pwd, String name, String age, int point, int subs, String icon, String chimg,
+			int state, String stateStr) {
+		super();
+		this.email = email;
+		this.pwd = pwd;
+		this.name = name;
+		this.age = age;
+		this.point = point;
+		this.subs = subs;
+		this.icon = icon;
+		this.chimg = chimg;
+		this.state = state;
+		this.stateStr = stateStr;
 	}
 	
 	public String getEmail() {
@@ -85,4 +101,14 @@ public class MemberVO implements Serializable{
 	public void setState(int state) {
 		this.state = state;
 	}
+	public String getStateStr() {
+		return stateStr;
+	}
+	public void setStateStr(String stateStr) {
+		this.stateStr = stateStr;
+	}
+
+	
+	
+	
 }
