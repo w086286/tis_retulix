@@ -3,16 +3,15 @@ package admin.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.MemberVO;
-import admin.domain.MemberVO;
 import admin.persistence.MemberDAO;
 import common.controller.AbstractAction;
+import common.domain.MemberVO;
 
-public class MemberInfoController extends AbstractAction {
+public class MemberEditController extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		System.out.println("[MemberInfoController] executed ####");
+		System.out.println("[MemberEditController] ## FROM.. memberEdit.do");
 		
 		String email= req.getParameter("email");
 		//유효성
@@ -28,9 +27,8 @@ public class MemberInfoController extends AbstractAction {
 		
 		MemberDAO dao= new MemberDAO();
 		//잘못된 email입력된 경우
-		MemberVO ismember= dao.listOneMember(email);
-		System.out.println(ismember);
-		if(ismember==null) {
+		MemberVO member= dao.listOneMember(email);
+		if(member==null) {
 			String msg="잘못된 접근입니다";
 			String loc="index.do";
 			req.setAttribute("msg", msg);
@@ -39,8 +37,6 @@ public class MemberInfoController extends AbstractAction {
 			
 			return;
 		}
-		
-		MemberVO member= dao.listOneMember(email);
 		
 		req.setAttribute("member", member);
 		

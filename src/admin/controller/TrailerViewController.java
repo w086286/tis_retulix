@@ -3,34 +3,30 @@ package admin.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.TrailerVO;
-import admin.persistence.ContentDAO;
+import admin.persistence.TrailerDAO;
 import common.controller.AbstractAction;
+import common.domain.TrailerVO;
 
-public class ContentEditController extends AbstractAction {
+public class TrailerViewController extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		System.out.println("[ContentEditController] executed ####");
+		System.out.println("[TrailerViewController] ## FROM. trailerView.do");
 		
 		String idx= req.getParameter("idx");
-		//유효성
 		if(idx==null || idx.trim().isEmpty()) {
-			String msg="잘못된 경로입니다";
+			String msg="결과를 찾을 수 없습니다 [result:none]";
 			String loc="javascript:history.back()";
 			req.setAttribute("msg", msg);
 			req.setAttribute("loc", loc);
-			
 			this.setViewPage("/message.jsp");
-			this.setRedirect(true);
-			
 			return;
 		}
 		
-		ContentDAO dao= new ContentDAO();
-		TrailerVO content= dao.selectOneContent(idx);
-		//유효성-파라미터조작
-		if(content==null) {
+		TrailerDAO dao= new TrailerDAO();
+		TrailerVO trailer= dao.selectOneTrailer(idx);
+		//유효성
+		if(trailer==null) {
 			String msg="잘못된 접근입니다 [parameter:none]";
 			String loc="index.do";
 			req.setAttribute("msg", msg);
@@ -39,9 +35,9 @@ public class ContentEditController extends AbstractAction {
 			return;
 		}
 		
-		req.setAttribute("content", content);
+		req.setAttribute("trailer", trailer);
 		
-		this.setViewPage("/admin/contentEdit.jsp");
+		this.setViewPage("/admin/trailerView.jsp");
 		this.setRedirect(false);
 	}
 

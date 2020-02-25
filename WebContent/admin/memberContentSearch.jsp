@@ -33,7 +33,8 @@
 				<th>영화명</th>
 				<th>리뷰제목</th>
 				<th>소개</th>
-				<th>URL</th>
+				<th>작성일</th>
+				<th>수정</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -42,7 +43,7 @@
 				<td>${search.idx}</td>
 				<td>${search.email}</td>
 				<td>${search.name}</td>
-				<td>${search.title}</td>
+				<td>${search.trailerTitle}</td>
 				<td>${search.reviewTitle}</td>
 		<core:if test='${function:length(search.info)<=40}'>	<!-- 너무길면 줄이기 -->
 				<td title='${search.info}'>${search.info}</td>
@@ -50,6 +51,7 @@
 		<core:if test='${function:length(search.info)>40}'>
 				<td title='${search.info}'>${function:substring(search.info,0,40)}...</td>
 		</core:if>
+				<td>${search.wdate}</td>
 				<td><i class="fa fa-edit"></i></td>
 			</tr>
 		</core:forEach>

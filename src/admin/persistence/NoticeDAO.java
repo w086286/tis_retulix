@@ -12,7 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import admin.domain.NoticeVO;
+import common.domain.NoticeVO;
 
 public class NoticeDAO {
 	

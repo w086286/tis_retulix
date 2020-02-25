@@ -6,15 +6,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.TrailerVO;
 import admin.domain.MemberContentVO;
-import admin.domain.MemberVO;
-import admin.domain.NoticeVO;
-import admin.domain.PagingVO;
-import admin.persistence.ContentDAO;
 import admin.persistence.MemberDAO;
 import admin.persistence.NoticeDAO;
+import admin.persistence.TrailerDAO;
 import common.controller.AbstractAction;
+import common.domain.MemberVO;
+import common.domain.NoticeVO;
+import common.domain.PagingVO;
+import common.domain.TrailerVO;
 
 public class AdminMainController extends AbstractAction {
 
@@ -38,8 +38,8 @@ public class AdminMainController extends AbstractAction {
 		MemberDAO memberDAO= new MemberDAO();
 		List<MemberVO> memberArr= memberDAO.listMember(start, end);
 		
-		ContentDAO contentDAO= new ContentDAO();
-		List<TrailerVO> contentArr= contentDAO.listContent(start, end);
+		TrailerDAO contentDAO= new TrailerDAO();
+		List<TrailerVO> trailerArr= contentDAO.listTrailer(start, end);
 
 		List<MemberContentVO> userContentArr= contentDAO.listAllMemberContent(start, end);
 		
@@ -47,7 +47,7 @@ public class AdminMainController extends AbstractAction {
 		List<NoticeVO> noticeArr= noticeDAO.getNoticeList(start,end);
 		
 		req.setAttribute("memberList", memberArr);
-		req.setAttribute("contentList", contentArr);
+		req.setAttribute("trailerList", trailerArr);
 		req.setAttribute("userContentList", userContentArr);
 		req.setAttribute("noticeList", noticeArr);
 		

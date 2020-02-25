@@ -5,10 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.NoticeVO;
-import admin.domain.PagingVO;
 import admin.persistence.NoticeDAO;
 import common.controller.AbstractAction;
+import common.domain.NoticeVO;
+import common.domain.PagingVO;
 
 public class NoticeMainController extends AbstractAction{
 

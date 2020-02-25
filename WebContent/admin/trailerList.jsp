@@ -5,10 +5,14 @@
 
 <jsp:include page="/admin/adminTop.jsp"/>
 <!-- ------------------------------------------------------- -->
+<!-- api -->
+<script src='./js/api.js'></script>
+<!-- -------- -->
+
 <div class='box'>
 		<h2 class='head'>컨텐츠 목록</h2>
 </div>
-<form action="contentSearch.do" name="searchForm" method="POST">
+<form action="trailerSearch.do" name="searchForm" method="POST">
 	<div class='box'>
 		<select class='' name="selectBox">
 			<option value='idx'>번호</option>
@@ -30,23 +34,26 @@
 					<th>감독</th>
 					<th>개봉일</th>
 					<th>소개</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
+			
 			<tbody>
-				<core:forEach var="list" items="${listContent}">
+				<core:forEach var="list" items="${listTrailer}">
 					<tr>
-						<td><a href='contentEdit.do?idx=${list.idx}'><i class="fa fa-edit"></i></a></td>
+						<td><a href='trailerEdit.do?idx=${list.idx}'><i class="fa fa-edit"></i></a></td>
 						<!-- 컨텐츠 세부내용 보기는 저쪽으로 링크 이어줄거 -->
-						<td><a href='contentView.do?idx=${list.idx}'>${list.idx}</a></td>
+						<td><a href='trailerView.do?idx=${list.idx}'>${list.idx}</a></td>
 						<td>${list.title}</td>
-						<td>${list.director}</td>
-						<td>${list.release}</td>
-				<core:if test='${function:length(list.info)<=40}'>	<!-- 너무길면 줄이기 -->
-						<td title='${list.info}'>${list.info}</td>
+						<td></td>
+						<td>개봉일</td>
+				<core:if test='${function:length(list.title)<=40}'>	<!-- 너무길면 줄이기 -->
+						<td title='${list.title}'>영화소개</td>
 				</core:if>
-				<core:if test='${function:length(list.info)>40}'>
-						<td title='${list.info}'>${function:substring(list.info,0,40)}...</td>
+				<core:if test='${function:length(list.title)>40}'>
+						<td title='${list.title}'>${function:substring(list.title,0,40)}...</td>
 				</core:if>
+						<td><a href='javascript:goDel("${list.idx}")'><i class="fa fa-trash"></i></a></td>
 					</tr>
 				</core:forEach>
 			</tbody>
@@ -61,6 +68,16 @@
 
 function goSearch() {
 	searchForm.submit();
+}
+function goDel(idx){
+	var check= confirm("["+idx+"] 항목을 정말로 삭제하시겠습니까?");
+	if(check){
+		location.href="trailerDelete.do?idx="+idx;		
+	}
+	else {
+		alert("삭제가 취소되었습니다");
+		return;
+	}
 }
 
 </script>

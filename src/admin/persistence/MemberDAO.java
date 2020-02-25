@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import admin.domain.MemberVO;
+import common.domain.MemberVO;
 
 public class MemberDAO {
 	

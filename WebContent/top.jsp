@@ -21,6 +21,7 @@
 
 <!-- 각 담당 파트별 별도 css 지정 스타일 -->
 <link rel="stylesheet" href="./css/main.css" />
+<link rel="stylesheet" href="./css/admin.css" /> <!-- admin css -->
 
 <!--jQuery Google CDN-------------------------->
 <script

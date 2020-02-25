@@ -15,16 +15,16 @@
 	<table>
 		<tr>
 			<th colspan='3' style='text-align:right; padding-right:7em;'>Content</th>
-			<th style='text-align:right;'><a href="contentList.do">
+			<th style='text-align:right;'><a href="trailerList.do">
 				<i class="fa fa-info-circle"></i></a></th>
 		</tr>
 		<!-- 반복문 -->
-	<core:forEach var='content' items='${contentList}' begin='0' end='3'>
+	<core:forEach var='trailer' items='${trailerList}' begin='0' end='3'>
 		<tr>
-			<td>${content.idx}</td>
-			<td>${content.title}</td>
-			<td>${content.director }</td>
-			<td>${content.release }</td>
+			<td>${trailer.idx}</td>
+			<td>${trailer.title}</td>
+			<td>감독</td>
+			<td>개봉일</td>
 		</tr>
 	</core:forEach>
 		<!-- ------ -->
@@ -46,7 +46,7 @@
 			<td>${member.email}</td>
 			<td>${member.name}</td>
 			<td>${member.age}</td>
-			<td>${member.state}</td>
+			<td>${member.stateStr}</td>
 		</tr>
 	</core:forEach>
 		<!-- ------ -->
@@ -69,7 +69,7 @@
 			<tr>
 				<td>${userContent.idx}</td>
 				<td style='width:50%;'>${userContent.reviewTitle}</td>
-				<td>${userContent.title }</td>
+				<td>${userContent.trailerTitle }</td>
 				<td>${userContent.name }</td>
 			</tr>
 		</core:forEach>

@@ -1,21 +1,23 @@
 package admin.domain;
 
+import java.util.Date;
+
 public class MemberContentVO {
 	
-	String idx;
-	String email;
-	String name;
-	String trailerTitle;
-	String reviewTitle;
-	String info;
-	String url;
+	private String idx;
+	private String email;
+	private String name;
+	private String trailerTitle;
+	private String reviewTitle;
+	private String info;
+	private String url;
+	private Date wdate;
 	
-	public MemberContentVO()
-	{
+	public MemberContentVO() {
 		
 	}
 	public MemberContentVO(String idx, String email, String name, String trailerTitle, String reviewTitle, String info,
-			String url, String contentIdx) {
+			String url, Date wdate) {
 		super();
 		this.idx = idx;
 		this.email = email;
@@ -24,6 +26,7 @@ public class MemberContentVO {
 		this.reviewTitle = reviewTitle;
 		this.info = info;
 		this.url = url;
+		this.wdate = wdate;
 	}
 	public String getIdx() {
 		return idx;
@@ -67,6 +70,13 @@ public class MemberContentVO {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	public Date getWdate() {
+		return wdate;
+	}
+	public void setWdate(Date wdate) {
+		this.wdate = wdate;
+	}
 	
+
 
 }

@@ -137,7 +137,7 @@ iframe {
 </script>
 
 <!-- ----------------------------------------------------------- -->
-<form name='previewForm' action='contentEdit.do?idx=${content.idx}' method='POST'>
+<form name='previewForm' action='trailerEdit.do?idx=${trailer.idx}' method='POST'>
 	<div class='backgr'  >
 	
 		 	<div class="iframe" style="position:relative; display:none " >
@@ -159,14 +159,14 @@ iframe {
 				</div>
 			</div>
 			<div class="ma" style = "color : white" class='item2' > <!--  본문-->
-				<label class='button'>${content.idx }</label>
-				<h3><c:out value="${content.title}"/></h3><p>
-				감독  <c:out value="${content.director}"/><br>
-				줄거리<br><pre><c:out value="${content.info}"/></pre><br>
-				개봉일 <c:out value="${content.release}"/><br>
+				<label class='button'>${trailer.idx }</label>
+				<h3><c:out value="${trailer.title}"/></h3><p>
+				감독  <c:out value="감독"/><br>
+				줄거리<br><pre><c:out value="영화소개"/></pre><br>
+				개봉일 <c:out value="개봉일"/><br>
 			</div>
 			<!-- 폼 전송할 히든인풋 -->
-			<input name='idx' id='idx' value='${content.idx}' readonly>
+			<input name='idx' id='idx' value='${trailer.idx}' readonly>
 			<!-- ////폼 전송할 히든인풋 -->
 
 		</div>
@@ -193,17 +193,17 @@ iframe {
 	</div>
 
 	<div class='box right'>
-		<button type='button' onclick='insertContent()'>수정하기</button>
+		<button type='button' onclick='insertTrailer()'>수정하기</button>
 		<button type='button' onclick='goList()'>목록으로</button>
 	</div>
 </form>
 	
 <script>
-	function insertContent(){
+	function insertTrailer(){
 		previewForm.submit();
 	}
 	function goList(){
-		location.href="contentList.do";
+		location.href="trailerList.do";
 	}
 </script>
 	

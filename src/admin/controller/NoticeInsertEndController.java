@@ -3,9 +3,9 @@ package admin.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.NoticeVO;
 import admin.persistence.NoticeDAO;
 import common.controller.AbstractAction;
+import common.domain.NoticeVO;
 
 public class NoticeInsertEndController extends AbstractAction {
 
@@ -17,7 +17,7 @@ public class NoticeInsertEndController extends AbstractAction {
 		String name= req.getParameter("name");
 		String info= req.getParameter("info");
 		
-		NoticeVO vo= new NoticeVO(null,title,info,null,0,name);
+		NoticeVO vo= new NoticeVO(0,title,info,null,0,name);
 		NoticeDAO dao= new NoticeDAO();
 		
 		int n= dao.insertNotice(vo);

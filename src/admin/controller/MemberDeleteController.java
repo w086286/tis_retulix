@@ -3,9 +3,9 @@ package admin.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.MemberVO;
 import admin.persistence.MemberDAO;
 import common.controller.AbstractAction;
+import common.domain.MemberVO;
 
 public class MemberDeleteController extends AbstractAction {
 

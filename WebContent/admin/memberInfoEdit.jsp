@@ -79,7 +79,8 @@ function goConfirm() {
 	memberInfoForm.submit();
 }
 function goDel(){
-	var check= confirm("회원정보를 정말로 삭제하시겠습니까?");
+	var check= confirm("회원정보를 정말로 삭제하시겠습니까?\n"
+				+"개인정보 보호법에 의하여 가입 후 1년 미만의 회원정보는 삭제하실 수 없습니다");
 	if(check){
 		memberInfoForm.action="memberDelete.do";
 		memberInfoForm.submit();

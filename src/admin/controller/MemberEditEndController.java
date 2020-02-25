@@ -1,19 +1,17 @@
 package admin.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import admin.domain.MemberVO;
 import admin.persistence.MemberDAO;
 import common.controller.AbstractAction;
+import common.domain.MemberVO;
 
 public class MemberEditEndController extends AbstractAction {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		System.out.println("[MemberEditEndController] executed ####");
+		System.out.println("[MemberEditEndController] ## FROM.. memberEdit.do");
 		
 		String email= req.getParameter("email");
 		//유효성
@@ -27,49 +25,20 @@ public class MemberEditEndController extends AbstractAction {
 		}
 		MemberDAO dao= new MemberDAO();
 		
-		//나머지 파라미터 받아오고
-		String pwd= req.getParameter("pwd");
-		String name= req.getParameter("name");
-		String year= req.getParameter("year");
-		String age= req.getParameter("age");
-		String point= req.getParameter("point");
-		String state= req.getParameter("state");
-		String showState="";
-		//회원상태별로 숫자->텍스트 전환
-		switch(state) {
-		case "0":
-			showState="일반";
-			break;
-		case "1":
-			showState="특별";
-			break;
-		case "-1":
-			showState="정지";
-			break;
-		case "-2":
-			showState="탈퇴";
-			break;
-		case "99":
-			showState="관리자";
-			break;
-		}
+		//해당 멤버vo 불러오고
+		MemberVO member= dao.listOneMember(email);
+		//기존정보 따로 저장하고
+		MemberVO oldMember= dao.listOneMember(email);
 		
-		String oldName= req.getParameter("oldName");
-		String oldYear= req.getParameter("oldYear");
-		String oldAge= req.getParameter("oldAge");
-		String oldPoint= req.getParameter("oldPoint");
-		String oldState= req.getParameter("oldState");
-		
-		
-		
-		MemberVO member= new MemberVO(email,pwd,name,year,
-						age,point,state);
-		MemberVO oldMember= new MemberVO(email,pwd,oldName,oldYear,oldAge,oldPoint,oldState);
+		member.setName(req.getParameter("name"));
+		member.setPoint(Integer.parseInt(req.getParameter("point")));
+		member.setState(Integer.parseInt(req.getParameter("state")));
 		
 		int n= dao.updateMember(member);
+		//바뀐멤버vo 다시가져와
+		MemberVO newMember= dao.listOneMember(email);
 		
-		req.setAttribute("member", member);
-		req.setAttribute("newState", showState);
+		req.setAttribute("newMember", newMember);
 		req.setAttribute("oldMember", oldMember);
 		
 		this.setViewPage("/admin/memberInfo.jsp");

@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.domain.MemberContentVO;
-import admin.domain.PagingVO;
-import admin.persistence.ContentDAO;
+import admin.persistence.TrailerDAO;
 import common.controller.AbstractAction;
+import common.domain.PagingVO;
 
 public class MemberContentController extends AbstractAction {
 
@@ -23,7 +23,7 @@ public class MemberContentController extends AbstractAction {
 		}
 		int cpage= Integer.parseInt(cpageStr);
 		
-		ContentDAO dao= new ContentDAO();
+		TrailerDAO dao= new TrailerDAO();
 		PagingVO paging= new PagingVO(dao.getTotalMemberContent(email), cpage, 10, 5);
 		List<MemberContentVO> memberContent= dao.listMemberContent(email, paging.getStart(), paging.getEnd());
 		

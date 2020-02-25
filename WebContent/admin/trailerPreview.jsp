@@ -137,7 +137,7 @@ iframe {
 </script>
 
 <!-- ----------------------------------------------------------- -->
-<form name='previewForm' action='contentInsertEnd.do' method='POST'>
+<form name='previewForm' action='trailerInsertEnd.do' method='POST'>
 	<div class='backgr'  >
 	
 		 	<div class="iframe" style="position:relative; display:none " >
@@ -159,18 +159,18 @@ iframe {
 				</div>
 			</div>
 			<div class="ma" style = "color : white" class='item2' > <!--  본문-->
-				<label class='button'>${content.idx }</label>
-				<h3><c:out value="${content.title}"/></h3><p>
-				감독  <c:out value="${content.director}"/><br>
-				줄거리<br><pre><c:out value="${content.info}"/></pre><br>
-				개봉일 <c:out value="${content.release}"/><br>
+				<label class='button'>${trailer.idx }</label>
+				<h3><c:out value="${trailer.title}"/></h3><p>
+				감독  <c:out value="${trailer.director}"/><br>
+				줄거리<br><pre><c:out value="${trailer.info}"/></pre><br>
+				개봉일 <c:out value="${trailer.release}"/><br>
 			</div>
 			<!-- 폼 전송용 히든인풋 -->
-				<input type="hidden" name='idx' value='${content.idx}'readonly>
-				<input type="hidden" name='title' value='${content.title}' readonly>
-				<input type="hidden" name='director' value='${content.director}'  readonly>
-				<input type="hidden" name='info' value='${content.info}'  readonly>
-				<input type="hidden" name='release' value='${content.release}' readonly>
+				<input type="hidden" name='idx' value='${trailer.idx}'readonly>
+				<input type="hidden" name='title' value='${trailer.title}' readonly>
+				<input type="hidden" name='director' value='${trailer.director}'  readonly>
+				<input type="hidden" name='info' value='${trailer.info}'  readonly>
+				<input type="hidden" name='release' value='${trailer.release}' readonly>
 			<!-- /////폼 전송용 히든인풋 -->
 		</div>
 
@@ -196,23 +196,23 @@ iframe {
 	</div>
 
 	<div class='box right'>
-	<c:if test='${content.idx eq null or content.idx eq ""}'>
-		<button type='button' onclick='insertContent()'>등  록</button>
+	<c:if test='${trailer.idx eq null or trailer.idx eq ""}'>
+		<button type='button' onclick='insertTrailer()'>등  록</button>
 	</c:if>
-	<c:if test='${content.idx ne null}'>
-		<button type='button' onclick='editContent()'>수  정</button>
+	<c:if test='${trailer.idx ne null}'>
+		<button type='button' onclick='editTrailer()'>수  정</button>
 	</c:if>
 		<button type='button' onclick='javascript:history.back()'>취  소</button>
 	</div>
 </form>
 	
 <script>
-	function insertContent(){
-		previewForm.action="contentInsertEnd.do";
+	function insertTrailer(){
+		previewForm.action="trailerInsertEnd.do";
 		previewForm.submit();
 	}
-	function editContent(){
-		previewForm.action="contentEditEnd.do";
+	function editTrailer(){
+		previewForm.action="trailerEditEnd.do";
 		previewForm.submit();
 	}
 	
