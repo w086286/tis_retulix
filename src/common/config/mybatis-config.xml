@@ -38,6 +38,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="main/persistence/mainMapper.xml"/>
 		<mapper resource="admin/persistence/adminMapper.xml"/>
 		<mapper resource = "trailer_view/persistence/Trailer_view_Mapper.xml"/>
+		<mapper resource="common/persistence/LoginMapper.xml"/>
 	</mappers>
 	
 </configuration>
