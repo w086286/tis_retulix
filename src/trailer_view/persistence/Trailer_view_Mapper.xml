@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper 
+   namespace="trailer_view.persistence.Trailer_view_Mapper">
+	
+	
+	<select id = "test" resultType="Trailer_ds">
+		select * from TRAILER_VIEW where idx='DA002'
+		
+		 
+	</select> 
+<select id="selectReview" resultType="Review" parameterType="string">
+	select div,genre,num,t_idx, substr(url,(instr(url,'/',4,4))+1) as url from review where t_idx =#{value}
+ 
+</select>
+  
+<select id = "randomList" resultType="Trailer_ds" parameterType="map">
+
+	select * from  ( select * from TRAILER_VIEW where idx != #{not} and idx like #{end}
+	 	 order by dbms_random.value) where rownum  <![CDATA[ <= 5 ]]>
+     
+</select>
+ <select id ="selectMv" resultType="Trailer_ds" parameterType="string">
+  	select * from TRAILER_VIEW where idx=#{value}
+</select> 
+
+<select id="selerandom" resultType="Trailer_ds">
+	select * from  (select * from TRAILER_VIEW order by dbms_random.value) where rownum <![CDATA[<= 1	]]>
+</select>
+
+
+<select id ="selectAllDb" resultType="Trailer_ds2">
+		select idx, title from TRAILER_VIEW
+</select>
+<update id = "updateDB_api" parameterType="map">
+<!-- "idx_num","api_idx -->
+	update TRAILER_VIEW set api_idx = #{a} where idx = #{i}
+</update>
+</mapper>

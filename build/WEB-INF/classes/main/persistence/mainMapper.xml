@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="main.persistence.mainMapper">
+
+	<select id="testsubMapper" resultType="subscribe">
+	
+	select email_subs from subs where email='eyesonme@naver.com'
+		
+	</select> 
+	
+	<select id="most_good" resultType="Trailer">
+	select * from(
+	select url from trailer_view where good is not null order by good desc
+	)where rownum<![CDATA[ <= ]]> 3
+ 
+	</select>
+	
+	<select id="SF_Movie" resultType="Trailer">
+		select title from trailer_view where idx like '%MS%'
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
