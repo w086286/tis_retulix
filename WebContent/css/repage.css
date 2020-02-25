@@ -46,7 +46,7 @@
 	top: 190px;
 	left: 120px;
 	font-size:30px;
-	
+	cursor: pointer;
 }
 
 
@@ -154,8 +154,23 @@ iframe {
             visibility: visible;
             opacity: 1;
         }
-
-
+	/*오버레이시 스크롤링 금지*/
+  .stop-scrolling {
+            /* height: 100%; */
+            overflow: hidden;
+        }
+        /*
+        오버레이 버튼 css
+        */
+        .close {
+        	font-size:30px;
+            position:absolute;
+            top:50px; right: 30px;
+            width: 36px;
+            margin:0; padding: 0;
+            cursor: pointer;
+            margin: 8px auto;
+        }
 
 
 

@@ -86,16 +86,25 @@
 	
         	 var tmp=event.title
         	 $('#overlay').addClass('show')
-        	
-        	
-             //document.body.classList.add("stop-scrolling");
+	
+             $('body').addClass("stop-scrolling");
         	var str= '<iframe id = "Overlay_players" src="'+tmp+'?controls=0&enablejsapi=1" width = "700px" height="450px"></iframe>'
- 			
-        	$('.overtube').html(str);		
-        	alert(str)
-			console.log(str)
+        	$('.overtube').html(str);
          }
 
+
+  function overlay_close(){
+	  $('#overlay').removeClass('show')
+      $('.overtube').html("");
+      $('body').removeClass("stop-scrolling");
+	  
+  }
+      
+      
+     
+  
+  
+  
 </script>
 
 
@@ -106,7 +115,7 @@
  
  <div id="overlay">
         <div class="overtube"></div>
-        <!-- <img class="close" src="img/close_white.png"> -->
+        <div class='close'><i onclick=overlay_close() class="far fa-times-circle"></i></div>
     </div>
 
 
