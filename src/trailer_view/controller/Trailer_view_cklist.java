@@ -16,14 +16,14 @@ public class Trailer_view_cklist extends AbstractAction {
 		Trailer_view_DAOMyBatis dao = new Trailer_view_DAOMyBatis();
 		
 		String num = req.getParameter("idx");
-		System.out.println("idx�� ��������"+num);
+		System.out.println("idx 체크"+num);
 		Trailer_view mvo = dao.selectTest(num);
 		
 		List<Trailer_view> arr=dao.selectPoster(num);
 		
 		req.setAttribute("mvo", mvo);
 		req.setAttribute("arr", arr);
-		this.setViewPage("new.jsp");
+		this.setViewPage("mList/new.jsp");
 		this.setRedirect(false); 
 		
 	
