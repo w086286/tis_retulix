@@ -46,7 +46,7 @@
 	top: 190px;
 	left: 120px;
 	font-size:30px;
-	
+	cursor: pointer;
 }
 
 
@@ -131,6 +131,49 @@ iframe {
 	
 
 }
+/* 오버레이 설정 */
+        #overlay{
+            position: fixed;
+            top:0; left:0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            /* 시작시 보이지 않게 처리 */
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.5s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 오버레이를 보여 줄때 사용 */
+        #overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+	/*오버레이시 스크롤링 금지*/
+  .stop-scrolling {
+            /* height: 100%; */
+            overflow: hidden;
+        }
+        /*
+        오버레이 버튼 css
+        */
+        .close {
+        	font-size:30px;
+            position:absolute;
+            top:50px; right: 30px;
+            width: 36px;
+            margin:0; padding: 0;
+            cursor: pointer;
+            margin: 8px auto;
+        }
+
+
+
 /* css 변수로 사용 */
 :root{
 	--main_bg:url('');

@@ -12,7 +12,7 @@
 		 
 	</select> 
 <select id="selectReview" resultType="Review" parameterType="string">
-	select div,genre,num,t_idx, substr(url,(instr(url,'/',4,4))+1) as url from review where t_idx =#{value}
+	select  url, substr(url,(instr(url,'/',4,4))+1) as title from REVIEW_VIEW where t_idx =#{value}
  
 </select>
   

@@ -73,17 +73,38 @@
 	             })
 
          }
-         function review_poster(idx,url){
-        	   var str='<a href='+"trailerView.do?idx="+idx+">"
-	              str+='<img src=https://img.youtube.com/vi/'+url+'/mqdefault.jpg width = "300px" height="100%">'
+         function review_poster(furl,surl,index_num){
+        	   var str='<a id = review'+index_num +' '+'onclick=overlay_show(this) title="'+furl+'">'
+	              str+='<img src=https://img.youtube.com/vi/'+surl+'/mqdefault.jpg width = "300px" height="100%">'
 	              str+='</a>'; 
 	      	
 	          $('.botom_reviews').append(str);
 	   
 	        
          }
-     
+  function overlay_show(event){
+	
+        	 var tmp=event.title
+        	 $('#overlay').addClass('show')
+	
+             $('body').addClass("stop-scrolling");
+        	var str= '<iframe id = "Overlay_players" src="'+tmp+'?controls=0&enablejsapi=1" width = "700px" height="450px"></iframe>'
+        	$('.overtube').html(str);
+         }
 
+
+  function overlay_close(){
+	  $('#overlay').removeClass('show')
+      $('.overtube').html("");
+      $('body').removeClass("stop-scrolling");
+	  
+  }
+      
+      
+     
+  
+  
+  
 </script>
 
 
@@ -91,12 +112,19 @@
 
 	1. 지금한거 함수 1번을 5번 호출
  -->
+ 
+ <div id="overlay">
+        <div class="overtube"></div>
+        <div class='close'><i onclick=overlay_close() class="far fa-times-circle"></i></div>
+    </div>
+
+
  <div class ="z_container">
 
 	<div class='backgr' >
 	
 		 	<div class="iframe" style="position:relative; display:none" >
-			<iframe id ='players'src="${mvo.url}?controls=0&enablejsapi=1" width = "100%" height="600px"  ></iframe>
+			<iframe id ='players'src="${mvo.url}?controls=0&enablejsapi=1" width = "100%" height="600px"></iframe>
 			
 			<img class='imbt4' src="./images/exit2.png">
 			<img class='imbt3' src="./images/exit.png"> 
@@ -132,9 +160,9 @@
 		<div class="botom_reviews">
 			
 		</div>
- <c:forEach var="review" items="${reviews}">
+ <c:forEach var="review" items="${reviews}" varStatus="i">
 				 <script>
-				review_poster('${review.idx}','${review.url}');
+				review_poster('${review.url}','${review.title}','${i.index}');
 				 </script>
 		</c:forEach> 
 	</div>
