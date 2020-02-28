@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.controller.AbstractAction;
+import common.domain.ReviewVO;
 import trailer_view.domain.Trailer_view;
 import trailer_view.persistence.Trailer_view_DAOMyBatis;
 
@@ -18,11 +19,12 @@ public class Trailer_view_cklist extends AbstractAction {
 		String num = req.getParameter("idx");
 		System.out.println("idx 체크"+num);
 		Trailer_view mvo = dao.selectTest(num);
-		
+		List<ReviewVO> arr2 = dao.selectReview(mvo.getIdx());
 		List<Trailer_view> arr=dao.selectPoster(num);
 		
 		req.setAttribute("mvo", mvo);
 		req.setAttribute("arr", arr);
+		req.setAttribute("reviews", arr2);
 		this.setViewPage("mList/new.jsp");
 		this.setRedirect(false); 
 		
