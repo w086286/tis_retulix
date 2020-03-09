@@ -62,8 +62,48 @@
         	             }) 
         	             
         	       
-        	   	
+        	  
     	});
+     
+
+	 function refresh_page(title){
+		 var str;
+		 str="title="+title;
+		 $.ajax({
+				type : 'GET',
+				url : 'movie_refresh.do',
+				data: str,
+				dataType : 'json',
+				cache : 'false',
+				success : function(res) {
+					 var substr=JSON.stringify(res.idx);
+					 var api_idx=JSON.stringify(res.api_idx);
+					substr=substr.split('"').join('');
+					api_idx=api_idx.split('"').join('');
+					substr= substr.substring(0,1)
+					
+						 fetchMovie(api_idx,substr,function(result){
+					             $('.poster_img').attr("src",result[3]);
+					        	 $('.ma').html("<h1 style ='display:inline'>"+result[0]+"</h1>"+"<h3 style ='display:inline;color:gray'>("+result[5]+")</h3>");
+					        	 $('.ma').append("<h3>개요</h3>"+"<p>"+result[1]+"</p>");
+					        	 if(result[2]!='')
+					        		 {
+					        	 		$('.ma').append("감독 : "+result[2]);
+					        		
+					        		 }
+					             document.documentElement.style.setProperty('--main_bg', result[4]);
+					             }) 
+				},
+				error : function(e) {
+					alert("e : " + e.status)
+				}
+
+			})
+		 
+	 }
+	 
+	 
+	 
          function poster(pos,idxy){
         	 
         	 var str="";
@@ -107,7 +147,7 @@
  	 var tmp=event.title
  	 $('#change_info').addClass('show')
  	 $('.find_api').val(event);
-      resize_able_table()
+      resize_able_table();
       $('body').addClass("stop-scrolling");
   }
 
@@ -150,19 +190,23 @@ $('body').removeClass("stop-scrolling");
 		var str = ""
 			$.each(arr, function(i, list) {
 				if(list.media_type=='tv'){
-					console.log(i)
-				str += "<tr id=tmp"+i+"><td style='width:15%'>" + list.name + "</td>";
+					
+				str += "<tr onclick='row_click(this)'><td style='width:15%'>" + list.name + "</td>";
 				str += "<td style='width:55%'>" + list.overview + "</td>";
 				str += "<td style='width:20%'>" + list.first_air_date + "</td>";
 				str += "<td style='width:15%'>" + list.original_name + "</td>";
+				str += "<td style='display:none'>" + list.id + "</td>";
+				str += "<td style='display:none'>" + '${mvo.idx}' + "</td>";
 				str += "</tr>";	
 				}
 				else
 					{
-					str += "<tr id=tmp"+i+"><td style='width:15%'>" + list.title + "</td>";
+					str += "<tr onclick='row_click(this)' ><td style='width:15%'>" + list.title + "</td>";
 					str += "<td style='width:55%'>" + list.overview + "</td>";
 					str += "<td style='width:20%'>" + list.release_date + "</td>";
 					str += "<td style='width:15%'>" + list.original_title + "</td>";
+					str += "<td style='display:none'>" + list.id + "</td>";
+					str += "<td style='display:none'>" + '${mvo.idx}' + "</td>";
 					str += "</tr>";	
 					
 					}
@@ -171,43 +215,127 @@ $('body').removeClass("stop-scrolling");
 
 		
 		$('#tables>tbody').html(str);
-		
+		table_paging($('#tables'));
 
 	}
+	
+	////////////페이징
+	function table_paging(arr){
+		
+	$('#nav').remove();
+	var $products = arr;
+
+	$products.after('<div id="nav">');
+
+
+	var $tr = $($products).find('tbody tr');
+	var rowTotals = $tr.length;
+	var rowPerPage =5; //보여줄 갯수
+
+	var pageTotal = Math.ceil(rowTotals/ rowPerPage);
+	var i = 0;
+
+	for (; i < pageTotal; i++) {
+		$('<a href="#"></a>')
+				.attr('rel', i)
+				.html(i + 1)
+				.appendTo('#nav');
+	}
+	$tr.addClass('off-screen')
+			.slice(0, rowPerPage)
+			.removeClass('off-screen');
+
+	var $pagingLink = $('#nav a');
+	$pagingLink.on('click', function (evt) {
+		evt.preventDefault();
+		var $this = $(this);
+		if ($this.hasClass('active')) {
+			return;
+		}
+		$pagingLink.removeClass('active');
+		$this.addClass('active');
+
+		// 0 => 0(0*4), 4(0*4+4)
+		// 1 => 4(1*4), 8(1*4+4)
+		// 2 => 8(2*4), 12(2*4+4)
+		// 시작 행 = 페이지 번호 * 페이지당 행수
+		// 끝 행 = 시작 행 + 페이지당 행수
+
+		var currPage = $this.attr('rel');
+		var startItem = currPage * rowPerPage;
+		var endItem = startItem + rowPerPage;
+
+		$tr.css('opacity', '0.0')
+				.addClass('off-screen')
+				.slice(startItem, endItem)
+				.removeClass('off-screen')
+				.animate({opacity: 1}, 300);
+
+	});
+
+	$pagingLink.filter(':first').addClass('active');
+
+	}
+	
+	/////////////////////////////////////////
 	
 	function resize_able_table(){
 		
 	   	$("#tables").colResizable({
 	   	  fixed:false,
-	      liveDrag:true
+	      liveDrag:true,
 	     
 		  });  
+	}/////////////////////////////////////////////////////////////
+	var str="";
+	function row_click(obj){ //1개만 선택되게하기
+		$('tbody > tr').removeClass("highlight");
+		str='';
+	var tmp=obj
+			var tr = $(obj)
+			var td = tr.children();
+		    td.each(function(i){
+		        if(i==td.length-1)
+		        	str+="tdArr="+td.eq(i).text();
+		        else
+		       		 str+="tdArr="+td.eq(i).text()+"&";
+		      
+		    });   
+		  
+		        var selected = $(obj).hasClass("highlight");
+		        $(obj).removeClass("highlight");
+		        if(!selected)
+		        $(obj).addClass("highlight");
+		    
+	
+	}/////////////////////////////////////
+	
+
+
+	function submit_idx_change(){
+		 
+			//alert(str);
+		$.ajax({
+			type : 'POST',
+			url : 'movie_changeInfo.do',
+			data: str,
+			dataType : 'json',
+			cache : 'false',
+			/* async: false, */
+			success : function(res) {
+				var tmp = JSON.stringify(res.result);
+				if(tmp>0){
+					alert('변환성공')
+					change_info_close()
+					refresh_page('${mvo.idx}')
+				} 
+			},
+			error : function(e) {
+				alert("e : " + e.status)
+			}
+
+		})
 	}
-	$(function(){
-		
-	$("#tmp0").click(function(){ 	
-		alert("도;ㅁ");
-		var str = ""
-		var tdArr = new Array();	// 배열 선언
-		
-		// 현재 클릭된 Row(<tr>)
-		var tr = $(this);
-		var td = tr.children();
-		
-		// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
-		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-		
-		// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-		td.each(function(i){
-			tdArr.push(td.eq(i).text());
-		});
-		alert(tdArr);
-		console.log("배열에 담긴 값 : "+tdArr);
-	
-	});
-	
-		
-	})
 </script>
 
 
@@ -228,7 +356,7 @@ $('body').removeClass("stop-scrolling");
 			class="find_api" type="text">
 		<button onclick="send_ajax()">검색</button>
 		<br>
-		<div id='tab'>
+		<div>
 			<table class='tables' id='tables' >
 			<thead>
 				<tr class='success'>
@@ -236,15 +364,18 @@ $('body').removeClass("stop-scrolling");
 					<th style='width: 55%'>요약</th>
 					<th style='width: 20%'>개봉일</th>
 					<th style='width: 15%'>원제목</th>
+					<th style="display:none">api키</th>
+					<th style="display:none">idx</th>
 				</tr>
 				</thead>
 				<tbody>
+				
 				</tbody>
 			</table>
 
 
 		</div>
-		<button>확인</button>
+		<button onclick="submit_idx_change()">확인</button>
 		<button onclick="change_info_close()">취소</button>
 	</div>
 

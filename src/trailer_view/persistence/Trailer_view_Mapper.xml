@@ -16,6 +16,10 @@
  
 </select>
   
+  <update id="update_seleted" parameterType="map">
+  		
+  		update TRAILER_VIEW set api_idx = #{api_num} , title=#{title} where idx = #{idx}
+  </update>
 <select id = "randomList" resultType="Trailer_ds" parameterType="map">
 
 	select * from  ( select * from TRAILER_VIEW where idx != #{not} and idx like #{end}

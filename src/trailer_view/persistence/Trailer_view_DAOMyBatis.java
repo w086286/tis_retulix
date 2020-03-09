@@ -154,5 +154,20 @@ public class Trailer_view_DAOMyBatis {
 	
 	}
 
+	public int find_update(String args[]) {
+		try {
+			ses=getSessionFactory().openSession(true);
+			Map<String,String> map = new HashMap<>();
+			map.put("title", args[0]);
+			map.put("api_num", args[1]);
+			map.put("idx", args[2]);
+			int result= ses.update(NS+".update_seleted",map);
+			return result;
+			
+		} finally {
+			close();
+		}
+	}
+
 	
 }
